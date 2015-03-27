@@ -113,6 +113,27 @@ public class UserInput : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) return hit.point;
-        return RTSManager.InvalidPosition;
+        return RTSManager.invalidPosition;
+    }
+
+    private void leftMouseClick()
+    {
+        if (player.hud.mouseInBounds()) {
+            GameObject hitObject = findHitObject();
+            Vector3 hitPoint = findHitPoint();
+            if (hitObject && hitPoint != RTSManager.invalidPosition) {
+                if (player.selectedObject) {
+                    player.selectedObject.mouseClick(hitObject, hitPoint, player);
+                }
+                else if (hitObject.name != "Ground") {
+                    WorldObject worldObject = hitObject.transform.root.GetComponent<WorldObject>();
+                    if (worldObject) {
+                        // we already know the player has no selected object
+                        player.selectedObject = worldObject;
+                        worldObject.setSelection(true);
+                    }
+                }
+            }
+        }
     }
 }

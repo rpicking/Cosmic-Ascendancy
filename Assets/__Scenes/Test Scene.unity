@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   username: VangardMk
   human: 1
+  hud: {fileID: 0}
 --- !u!114 &709563090
 MonoBehaviour:
   m_ObjectHideFlags: 0

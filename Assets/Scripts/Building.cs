@@ -18,10 +18,4 @@ public class Building : WorldObject {
         base.Update();
     }
 
-    private void leftMouseClick()
-    {
-        if (player.hud.mouseInBounds()) {
-            GameObject hitObject = findHitPoint();
-        }
-    }
 }
