@@ -98,4 +98,21 @@ public class UserInput : MonoBehaviour {
             Camera.main.transform.eulerAngles = Vector3.MoveTowards(origin, destination, Time.deltaTime * RTSManager.RotateSpeed);
         }
     }
+
+    private GameObject findHitObject()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)) return hit.collider.gameObject;
+        return null;
+
+    }
+
+    private Vector3 findHitPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)) return hit.point;
+        return RTSManager.InvalidPosition;
+    }
 }
